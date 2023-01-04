@@ -1,5 +1,5 @@
 # acme-focused-file
-This is a fork/rewrite of (fhs's)[https://github.com/fhs] (acmefocused)[https://github.com/fhs/acme-lsp/tree/master/cmd/acmefocused] which uses a simple text file instead of a socket. Made because the original acmefocused wasn't working for me.
+This is a fork/rewrite of [fhs's](https://github.com/fhs) [acmefocused](https://github.com/fhs/acme-lsp/tree/master/cmd/acmefocused) which uses a simple text file instead of a socket. Made because the original acmefocused wasn't working for me.
 
 # Setup and installation
 You can install `acme-focused-file` by running the following commands
@@ -16,14 +16,16 @@ To just generate the file and check the current window you can use it like this:
 $ acme & # Your acme startup script
 $ acme-focused &
 $ cat /tmp/acme-focused
+   2 # Window id
 ```
 
 You can also pass a parameter to `acme-focused` which will determine the folder where it will store tue file, for an example, like this:
 
 ``` shell
-acme &
-acme-focused $XDG_CACHE_HOME &
-cat $XDG_CACHE_HOME/acme-focused
+$ acme &
+$ acme-focused $XDG_CACHE_HOME &
+$ cat $XDG_CACHE_HOME/acme-focused
+   1 # Window id
 ```
 
 # Issues
