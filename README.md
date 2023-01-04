@@ -1,5 +1,5 @@
 # acme-focused-file
-This is a fork/rewrite of [fhs's](https://github.com/fhs) [acmefocused](https://github.com/fhs/acme-lsp/tree/master/cmd/acmefocused) which uses a simple text file instead of a socket. Made because the original acmefocused wasn't working for me.
+This is a fork/rewrite of [fhs](https://github.com/fhs)'s [acmefocused](https://github.com/fhs/acme-lsp/tree/master/cmd/acmefocused) which uses a simple text file instead of a socket. Made because the original acmefocused wasn't working for me.
 
 # Setup and installation
 You can install `acme-focused-file` by running the following commands
@@ -32,3 +32,6 @@ $ cat $XDG_CACHE_HOME/acme-focused
 
 # Issues
 Since `acme-focused-file` works by writing acme's `$winid` every two seconds to a temporary file, it isn't exactly the most optimal way to check the window's id. Feel free to make a fork or a PR request with changes to the source code which you think would make the program better.
+
+# Credits and Acknowledgments
+- [fhs](https://github.com/fhs)'s [acmefocused](https://github.com/fhs/acme-lsp/tree/master/cmd/acmefocused) and [acme-lsp](https://github.com/fhs/acme-lsp), where a part of the source code was borrowed and modified from.
