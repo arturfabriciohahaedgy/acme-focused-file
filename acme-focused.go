@@ -12,6 +12,7 @@ import (
 	"9fans.net/go/acme"
 )
 
+// name of the text file generated
 const logName = "acme-focused"
 
 type focusedWin struct {
@@ -19,6 +20,7 @@ type focusedWin struct {
 	mu sync.Mutex
 }
 
+// open acme's log and save it's $winid to fw.id everytime a "focus" event happens
 func (fw *focusedWin) readLog() {
 	alog, err := acme.Log()
 	if err != nil {
@@ -34,7 +36,6 @@ func (fw *focusedWin) readLog() {
 		if ev.Op == "focus" {
 			fw.mu.Lock()
 			fw.id = ev.ID
-			// fmt.Printf("readLog id: %d\n", fw.id)
 			fw.mu.Unlock()
 		}
 	}
@@ -45,7 +46,6 @@ func makeFilePath(path *string) {
 	sepIndex := strings.LastIndex(*path, "/")
 	if sepIndex != len(*path)-1 {
 		*path += "/"
-		// fmt.Printf("path: %s, sepIndex: %d\n", *path, sepIndex)
 	}
 	*path += logName
 }
@@ -57,16 +57,20 @@ func (fw *focusedWin) ID() int {
 	return fw.id
 }
 
-// func writeFile(path string, id int) {
-func writeFile(path string, fw *focusedWin) {
+// func writeId(path string, id int) {
+func writeId(path string, fw *focusedWin) {
 	lastVal := 0
 	makeFilePath(&path)
 	for {
 
 		if lastVal != fw.ID() {
-			/* fmt.Printf("writeFile id: %s\n", strconv.Itoa(fw.ID())) */
 			lastVal = fw.ID()
 
+			/*
+			   use os.WriteFile because it overwrites the previous text entered,
+			   as opposed to a, say, os.Create and fmt.Fprintf(), which would
+			   just append strings to the previous data entered
+			*/
 			err := os.WriteFile(path, []byte(strconv.Itoa(fw.ID())+"\n"), 0666)
 			if err != nil {
 				log.Fatalf("couldn't open/write file at '%s': %s", path, err)
@@ -103,5 +107,5 @@ func main() {
 
 	go fw.readLog()
 
-	writeFile(path, &fw)
+	writeId(path, &fw)
 }
