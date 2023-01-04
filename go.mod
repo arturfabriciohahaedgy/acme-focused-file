@@ -1,4 +1,4 @@
-module github.com/arturfabricioahahedgy/acme-focused
+module github.com/arturfabriciohahaedgy/acme-focused-file
 
 go 1.19
 
