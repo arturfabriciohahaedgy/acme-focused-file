@@ -1,0 +1,4 @@
+Things that still need to be worked on:
+
+- Create a new flag that will make the created file be deleted after the program finish it's execution. (Will need to reorganize the way the program is exited)
+- Add examples of shell scripts to do. (Maybe create a repo with scripts that interact with 9p and link it)
